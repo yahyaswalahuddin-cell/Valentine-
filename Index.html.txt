@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Be My Valentine ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      width: 320px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 22px;
+      font-size: 16px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+      margin-right: 10px;
+    }
+
+    #noBtn {
+      background: #ccc;
+      position: absolute;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .celebrate {
+      animation: pulse 0.8s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card" id="questionCard">
+    <h1>Will you be my Valentine? 💖</h1>
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+  </div>
+
+  <div class="card hidden celebrate" id="celebrationCard">
+    <h1>She said YES 🥰🎉</h1>
+    <p>Happy Valentine’s Day, my love ❤️</p>
+    <img
+      src="PUT_YOUR_IMAGE_LINK_HERE"
+      style="width:100%; border-radius:15px; margin-top:15px;"
+      alt="Us"
+    />
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const questionCard = document.getElementById("questionCard");
+    const celebrationCard = document.getElementById("celebrationCard");
+
+    function moveNoButton() {
+      const card = questionCard.getBoundingClientRect();
+      const maxX = card.width - noBtn.offsetWidth;
+      const maxY = card.height - noBtn.offsetHeight;
+
+      noBtn.style.left = Math.random() * maxX + "px";
+      noBtn.style.top = Math.random() * maxY + "px";
+    }
+
+    noBtn.addEventListener("mouseover", moveNoButton);
+    noBtn.addEventListener("click", moveNoButton);
+
+    yesBtn.addEventListener("click", () => {
+      questionCard.classList.add("hidden");
+      celebrationCard.classList.remove("hidden");
+    });
+
+    moveNoButton();
+  </script>
+
+</body>
+</html>
